@@ -5,7 +5,10 @@ import Aux from '../../../hoc/ReactAux/ReactAux';
 
 class Modal extends Component {
   shouldComponentUpdate(nextProps, nextState) {
-    return nextProps.show !== this.props.show;
+    return (
+      nextProps.show !== this.props.show ||
+      nextProps.children !== this.props.children
+    );
   }
   componentDidUpdate() {
     console.log('[OrderSummary] DidUpdate');
@@ -19,7 +22,8 @@ class Modal extends Component {
           style={{
             transform: this.props.show ? 'translateY(0)' : 'translateY(-100vh)',
             opacity: this.props.show ? '1' : '0',
-          }}>
+          }}
+        >
           {this.props.children}
         </div>
       </Aux>
